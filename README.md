@@ -110,5 +110,5 @@ To schedule the script to run daily, you can:
 This script is provided as-is, and you are free to modify and use it for your purposes. Attribution is appreciated.
 
 ## Author
-Created by [Your Name/Organization].
+Created by Jukka Salmenkylä
 
