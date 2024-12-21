@@ -73,4 +73,4 @@ def fetch_arxiv_papers(*subjects):
     
     
 # You can test the script with this command:
-# fetch_arxiv_papers("Computation and Language")    
+# fetch_arxiv_papers("Information Retrieval")    
