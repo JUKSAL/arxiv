@@ -1,4 +1,4 @@
 arxiv_scraper.py
 run_arxiv_scraper.sh
 *.pdf
-.DS_store
+.DS_Store
