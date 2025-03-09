@@ -4,3 +4,8 @@ Machine Learning
 Information Theory
 Artificial Intelligence
 Operations research
+Neurons and Cognition
+Neural and Evolutionary Computing
+Data Structures and Algorithms
+Systems and Control
+Robotics
