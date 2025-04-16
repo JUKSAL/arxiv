@@ -2,3 +2,6 @@ arxiv_scraper.py
 run_arxiv_scraper.sh
 *.pdf
 .DS_Store
+instructions.txt
+.DS_Store
+.env
