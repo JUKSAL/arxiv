@@ -10,3 +10,4 @@ arxiv_cron.log
 .pytest_cache
 .venv
 /DBMS/
+.vscode
