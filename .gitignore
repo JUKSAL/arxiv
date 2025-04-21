@@ -1,14 +1,31 @@
-arxiv_scraper.py
-run_arxiv_scraper.sh
-*.pdf
+# .gitignore
+
+# macOS files
 .DS_Store
-instructions.txt
-.DS_Store
+
+# IDE settings
+.vscode/
+
+# Python virtual environments
+.venv/
+env/
+venv/
+
+# Python cache and bytecode
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Unit test cache
+.pytest_cache/
+
+# Log files
+*.log
+
+# Environment variables
 .env
+
+# Project data directories
 /ArxivPapers/
-arxiv_cron.log
-.pytest_cache
-.venv
 /DBMS/
-.vscode
-.flake8
