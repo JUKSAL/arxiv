@@ -11,3 +11,4 @@ arxiv_cron.log
 .venv
 /DBMS/
 .vscode
+.flake8
