@@ -1,27 +1,34 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="KnowlegeGraph",
+    name="arxiv-scraper",
     version="0.1.0",
-    description="A system for managing and querying research papers using graph and vector databases",
+    description="A system for scheduled scraping and summarization of ArXiv papers",
     author="Jukka Salmenkyla",
     packages=find_packages(),
     install_requires=[
-        "langchain-openai>=0.0.5",
-        "langchain>=0.1.0",
-        "neo4j>=5.0.0",
-        "openai>=1.0.0",
-        "pandas>=2.0.0",
+        "beautifulsoup4>=4.9.0",
         "PyPDF2>=3.0.0",
-        "pytest>=7.0.0",
-        "python-dotenv>=1.0.0",
+        "pandas>=1.0.0",
+        "reportlab>=3.5.0",
+        "requests>=2.25.0",
+        "schedule>=1.0.0",
+        "python-dotenv>=0.15.0",
     ],
     extras_require={
+        "ai": [
+            "openai>=0.27.0",
+        ],
         "dev": [
             "pytest>=7.0.0",
             "pylint>=3.0.0",
             "black>=23.0.0",
             "isort>=5.0.0",
+        ],
+    },
+    entry_points={
+        "console_scripts": [
+            "arxiv-scraper=arxiv.__main__:main",
         ],
     },
     python_requires=">=3.8",
@@ -34,7 +41,7 @@ setup(
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3.11",
-        "Topic :: Scientific/Engineering :: Artificial Intelligence",
-        "Topic :: Scientific/Engineering :: Information Analysis",
+        "Topic :: Scientific/Engineering :: Information Retrieval",
+        "Topic :: Text Processing :: Markup :: XML",
     ],
 ) 

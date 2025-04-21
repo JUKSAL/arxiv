@@ -1,23 +1,21 @@
-# KnowlegeGraph
+# ArXiv Scraper and Summarizer
 
-A system for managing and querying research papers using graph and vector databases.
+A system for scheduled scraping and summarization of ArXiv papers.
 
 ## Features
 
-- Process PDF research papers and extract structured information
-- Build a knowledge graph of papers, authors, citations, and research fields
-- Perform semantic search across papers using vector embeddings
-- Generate summaries and extract keywords using LLMs
-- Import metadata from Zotero
-- Natural language querying of the knowledge graph
+- Scrape papers from ArXiv based on topics of interest
+- Generate PDF reports with paper information
+- Create summaries of scraped papers
+- Optional AI-powered summarization (requires OpenAI API key)
+- Configurable scheduling for daily updates
+- Command-line interface for easy usage
 
 ## Installation
 
 ### Prerequisites
 
 - Python 3.8 or higher
-- Neo4j database
-- OpenAI API key
 
 ### Install from source
 
@@ -29,68 +27,102 @@ cd arxiv
 
 2. Install in development mode:
 ```bash
-pip install -e ".[dev]"
+pip install -e .
+```
+
+3. For AI-powered summarization:
+```bash
+pip install -e ".[ai]"
 ```
 
 ### Environment Variables
 
-Create a `.env` file with the following variables:
+If you're using AI-powered summarization, create a `.env` file with:
 ```bash
-NEO4J_URI=bolt://localhost:7687
-NEO4J_USERNAME=neo4j
-NEO4J_PASSWORD=your_password
 OPENAI_API_KEY=your_api_key
 ```
 
 ## Usage
 
+### Command Line Interface
+
+The package provides a command-line interface for easy usage:
+
+```bash
+# Scrape papers from ArXiv
+arxiv-scraper scrape
+
+# Generate summaries of scraped papers
+arxiv-scraper summarize
+
+# Run the scheduler for daily updates
+arxiv-scraper schedule
+```
+
 ### Basic Usage
 
 ```python
-from KnowlegeGraph import ResearchPaperGraphRAG, Config
+from arxiv.scraper import ArxivScraper
+from arxiv.summarizer import ArxivSummarizer
 
-# Initialize the system
-config = Config.from_env()
-rag = ResearchPaperGraphRAG(config)
+# Scrape papers
+scraper = ArxivScraper(output_dir="ArxivPapers")
+results = scraper.scrape_papers(["Machine Learning", "Artificial Intelligence"])
 
-# Process a PDF file
-paper_id = rag.process_pdf("path/to/paper.pdf")
-
-# Generate a summary
-summary = rag.generate_paper_summary(paper_id)
-print(summary)
-
-# Find similar papers
-similar_papers = rag.find_similar_papers(paper_id)
-for paper in similar_papers:
-    print(f"- {paper.title} (Score: {paper.similarity_score:.2f})")
-
-# Query the knowledge graph
-answer = rag.query("What are the most cited papers about machine learning?")
-print(answer)
+# Generate summaries
+summarizer = ArxivSummarizer(input_dir="ArxivPapers", output_dir="ArxivSummaries")
+summary_files = summarizer.summarize_latest_papers()
 ```
 
-### Process Multiple Papers
+### Configuration
 
-```python
-# Process a directory of PDFs
-paper_ids = rag.process_directory("papers/")
+Create or edit `arxiv_config.json` to customize behavior:
 
-# Import from Zotero CSV export
-paper_ids = rag.process_metadata_csv("zotero_export.csv")
+```json
+{
+  "scrape_schedule": "09:00",
+  "summary_schedule": "10:00",
+  "use_ai_summaries": false,
+  "openai_api_key": null,
+  "max_papers_per_topic": 100,
+  "arxiv_category": "cs",
+  "log_level": "INFO"
+}
 ```
 
-### Add Relationships
+### Topics File
 
-```python
-# Add citations
-rag.add_citation(citing_paper_id, cited_paper_id)
+Create a `topics.txt` file with one topic per line:
 
-# Add research fields
-rag.add_research_field(paper_id, "Machine Learning")
+```
+Machine Learning
+Artificial Intelligence
+Information Retrieval
+Computation and Language
+Neural and Evolutionary Computing
+```
 
-# Add institution affiliations
-rag.add_institution("John Doe", "Example University")
+## Scheduled Operation
+
+### Running as a Service
+
+To run the scheduler as a background service, you can use:
+
+```bash
+nohup arxiv-scraper schedule > arxiv.log 2>&1 &
+```
+
+### Using Cron
+
+Alternative to the built-in scheduler, you can use cron:
+
+```bash
+# Edit crontab
+crontab -e
+
+# Add these lines
+0 9 * * * /path/to/python -m arxiv scrape
+0 10 * * * /path/to/python -m arxiv summarize
 ```
 
 ## Development
@@ -98,7 +130,7 @@ rag.add_institution("John Doe", "Example University")
 ### Running Tests
 
 ```bash
-pytest KnowlegeGraph/tests/
+pytest
 ```
 
 ### Code Style
@@ -110,8 +142,8 @@ The project uses:
 
 To format code:
 ```bash
-black KnowlegeGraph/
-isort KnowlegeGraph/
+black arxiv/
+isort arxiv/
 ```
 
 ## License
