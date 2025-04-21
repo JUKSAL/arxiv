@@ -5,3 +5,8 @@ run_arxiv_scraper.sh
 instructions.txt
 .DS_Store
 .env
+/ArxivPapers/
+arxiv_cron.log
+.pytest_cache
+.venv
+/DBMS/
