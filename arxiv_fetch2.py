@@ -117,7 +117,8 @@ topics =["Information retrieval",
 "Artificial Intelligence",
 "Neurons and Cognition",
 "Neural and Evolutionary Computing",
-"Data Structures and Algorithms"]
+"Data Structures and Algorithms",
+"Robotics"]
 
 
 for x in topics:

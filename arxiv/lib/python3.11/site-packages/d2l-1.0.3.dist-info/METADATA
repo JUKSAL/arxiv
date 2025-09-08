@@ -1,0 +1,23 @@
+Metadata-Version: 2.1
+Name: d2l
+Version: 1.0.3
+Summary: Dive into Deep Learning
+Home-page: https://d2l.ai
+Author: D2L Developers
+Author-email: d2l.devs@gmail.com
+License: MIT-0
+Platform: UNKNOWN
+Requires-Python: >=3.8
+License-File: LICENSE
+License-File: LICENSE-SAMPLECODE
+License-File: LICENSE-SUMMARY
+Requires-Dist: jupyter (==1.0.0)
+Requires-Dist: numpy (==1.23.5)
+Requires-Dist: matplotlib (==3.7.2)
+Requires-Dist: matplotlib-inline (==0.1.6)
+Requires-Dist: requests (==2.31.0)
+Requires-Dist: pandas (==2.0.3)
+Requires-Dist: scipy (==1.10.1)
+
+UNKNOWN
+
